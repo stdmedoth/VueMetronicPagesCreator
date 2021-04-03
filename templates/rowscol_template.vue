@@ -1,0 +1,1 @@
+{ key: "{{rowcol}}", sortable: true, label: "{{label}}" }

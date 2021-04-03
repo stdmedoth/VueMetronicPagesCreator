@@ -20,34 +20,7 @@ export default {
   data() {
     return {
       column: [
-        {
-          key: "id",
-          thClass: 'd-none',
-          tdClass: 'd-none',
-          sortable: true,
-          label: "Id da Loja",
-        },
-        {
-          key: "sto_title",
-          sortable: true,
-          label: "Nome da Loja",
-        },
-        {
-          key: "sto_description",
-          sortable: true,
-          label: "Email",
-        },
-        {
-          key: "sto_city",
-          sortable: true,
-          label: "Cidade",
-        },
-        {
-          key: "actions",
-          sortable: false,
-          label: "Acões",
-        },
-
+        {{ObjectColsInputs}}
       ],
       errors: [],
       show_msg: false,
@@ -56,9 +29,9 @@ export default {
     };
   },
   mounted() {
-    ApiService.get("Stores/get")
+    ApiService.get("{{Object}}/get")
       .then(({ data }) => {
-        this.items = data.stores;
+        this.items = data.{{object}};
       })
       .catch(({ response }) => {
         this.errors = response.data.errors;
@@ -67,17 +40,15 @@ export default {
       });
   },
   computed: {
-    ...mapState({
-      user: state => state.auth.user
-    }),
+
   },
   methods: {
     editStore(id) {
-      this.$router.push('/stores/edit/'+ id);
+      this.$router.push('/{{Object}}/edit/'+ id);
     },
     deletarStore(id, index) {
 
-      ApiService.post("Stores/delete", {
+      ApiService.post("{{Object}}/delete", {
         id: id ,
       })
         .then(({ data }) => {

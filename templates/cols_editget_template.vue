@@ -1,0 +1,1 @@
+this.{{col}} = data.{{object}}[0].{{col}}
